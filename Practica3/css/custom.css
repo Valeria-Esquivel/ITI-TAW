@@ -79,5 +79,6 @@
 		border-color: #f50000;
 	}
 	table.table td .add {
-		display: none;
+        display: none; 
+        
 	}
