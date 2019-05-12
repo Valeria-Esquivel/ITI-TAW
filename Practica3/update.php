@@ -18,7 +18,7 @@
        <div class = "table-wrapper">
             <div class= "table-title">
                 <div class ="row">
-                      <div class="col-sm-8"><h2>Agregar <b>Cliente</b></h2></div>
+                      <div class="col-sm-8"><h2>Actualizar <b>Cliente</b></h2></div>
                       <div class="col-sm-4">
                            <a href="index.php" class="btn btn-info add-new"><i
                            class="fa fa-arrow-left"></i>Regresar</a> 
@@ -27,55 +27,85 @@
             </div>
             <?php
             include ("database.php");
+            $id=$_GET["Registro"];
             $clientes =  new Database();
-            if (isset($_POST) && !empty($_POST)) {
-              $nombres = $clientes->sanitize($_POST['nombres']);
-              $apellidos = $clientes->sanitize($_POST['apellidos']);
-              $telefono = $clientes->sanitize($_POST['telefono']);
-              $direccion= $clientes->sanitize($_POST['direccion']);
-              $correo_electronico = $clientes->sanitize($_POST['correo_electronico']);
-              
-              $res = $clientes->create($nombres,$apellidos,$telefono,$direccion,$correo_electronico);
-              if ($res) {
-                $message = "Datos insertados con exito";
+            $res = $clientes->single_record($id);
+            $array = array ();
+            foreach ($res as $key => $value) {
+            $array[$key] = $value;
+            }
+            if ($res) {
+                $message = "Datos encontrados";
                 $class = "alert alert-success";
               }else{
-                $message="No se pudieron insertar los datos";
+                $message="No se pudieron encontrar los datos";
                 $class="alert alert-danger";
               }
 
 
              ?>
-           
-           <div class="<?php echo $class?>">
+             <div class="<?php echo $class?>">
              <?php echo $message;?>
            </div>
-              <?php
+
+
+           <?php
+           
+           if (isset($_POST) && !empty($_POST)) {
+            $nombres = $clientes->sanitize($_POST['nombres']);
+            $apellidos = $clientes->sanitize($_POST['apellidos']);
+            $telefono = $clientes->sanitize($_POST['telefono']);
+            $direccion= $clientes->sanitize($_POST['direccion']);
+            $correo_electronico = $clientes->sanitize($_POST['correo_electronico']);
+            
+            $res = $clientes->update($nombres,$apellidos,$telefono,$direccion,$correo_electronico,$id);
+            if ($res) {
+              $message = "Datos insertados con exito";
+              $class = "alert alert-success";
+            }else{
+              $message="No se pudieron insertar los datos";
+              $class="alert alert-danger";
+            }
+
+
+           ?>
+         
+         <div class="<?php echo $class?>">
+           <?php echo $message;?>
+         </div>
+         <?php
           }
         
         
         ?>
+           
+           
+           
+         
+           
+           
+             
         <div class="row">
          <form method="post">
          <div class="col-md-6">
             <label>Nombres:</label>
-            <input type="text" name="nombres" id="nombres" class='form-control' maxlenght="100" required >
+            <input type="text" name="nombres" id="nombres"   value="<?php echo $array["nombres"]?>" class='form-control' maxlenght="100" required >
          </div>
          <div class="col-md-6">
             <label>Apellidos:</label>
-            <input type="text" name="apellidos" id="apellidos" class='form-control' maxlenght="100" required>  
+            <input type="text" name="apellidos" id="apellidos" value="<?php echo $array["apellidos"]?>" class='form-control' maxlenght="100" required>  
          </div>
          <div class="col-md-12">
             <label>Direccion:</label> 
-            <textarea name="direccion" id="direccion" class='form-control' maxlenght="255" required></textarea>
+            <input type="text" name="direccion" id="direccion" value="<?php echo $array["direccion"]?>" class='form-control'  maxlenght="255" required>
          </div>
          <div class="col-md-6">
             <label>Telefono:</label>
-            <input type="text" name="telefono" id="telefono" class='form-control' maxlenght="15" required>
+            <input type="text" name="telefono" id="telefono" value="<?php echo $array["telefono"]?>" class='form-control' maxlenght="15" required>
          </div>
          <div class="col-md-6">
             <label>Correo electronico:</label>
-            <input type="email" name="correo_electronico" id="correo_electronico" class='form-control' maxlenght ="64" required>
+            <input type="email" name="correo_electronico" id="correo_electronico" value="<?php echo $array["correo_electronico"]?>" class='form-control' maxlenght ="64" required>
          
          </div>
          
