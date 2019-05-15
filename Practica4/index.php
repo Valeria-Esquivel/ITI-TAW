@@ -38,11 +38,11 @@ $(document).ready(function() {
                 </div>
             </div>
             <?php
+            //incluye los metodos y funciones del archivo database.php
             include ("database.php");
             $clientes =  new Database();
-              $res = $clientes->read();
-   
-           
+            //Utiliza el metodo read del archivo database.php para traer todos los registros de la tabla clientes
+            $res = $clientes->read();
              ?>
            
            <div class="<?php echo $class?>">
@@ -64,6 +64,7 @@ $(document).ready(function() {
                          </tr>
                 </thead> 
                       <tbody>
+                      <!-- foreach recorre todas las filas del array $res en el cual se almacenaron los datos de la tabla de la base de datos -->
                        <?php foreach($res as $fila){?>
                    
                         <tr>
@@ -75,17 +76,13 @@ $(document).ready(function() {
                             <td><center><?php echo $fila["correo_electronico"]?></center></td>
                             <td>
                            <center>
+                           <!-- Se utilizan  imagenes como botones las cuales direccionan a update.php y delete.php -->
                            <a href="<?php echo "http://localhost:9090/TAW/Practica3/update.php?Registro=".$fila['id'] ?> " ><img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
-                
                            <a href="<?php echo "http://localhost:9090/TAW/Practica3/delete.php?eliminar=".$fila['id'] ?> " ><img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a></a>  
                         </center>
                         </tr>
                         <?php }?>
                     </tbody>
-                          
-  
-
-
                         </tr>
                 
                 </table>

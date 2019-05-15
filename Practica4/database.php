@@ -46,9 +46,11 @@ class Database{
         $return=mysqli_fetch_object($res);
         return $return;
     }
+    //trae el registro de la base de datos para iniciar sesion 
     public function log($nick,$pass){
         $sql="SELECT * FROM inicio where nick='$nick' and pass='$pass'";
         $res=mysqli_query($this->con, $sql);
+       
         $return=mysqli_fetch_object($res);
         return $return;
     }

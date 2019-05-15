@@ -16,18 +16,22 @@
 <body>
 
 <?php
+//incluye los metodos y funciones del archivo database.php
     include ("database.php");
+    //se trea el id de registro seleccionado de index.php       
     $id=$_GET["eliminar"];
-    
+    //se crea objeto de la clase database()
     $clientes =  new Database();
-              $res = $clientes->delete($id);
-              if ($res) {
-                $message = "Registro Eliminado";
-                $class = "alert alert-success";
-              }else{
-                $message="No se pudo Eliminar con exito";
-                $class="alert alert-danger";
-              }
+    //se llama al metodo delete para hacer la cosnulta a la BD       
+    $res = $clientes->delete($id);
+    //se crean mensajes de alerta si se realizo con exito o no la consulta a la BD    
+    if ($res) {
+      $message = "Registro Eliminado";
+      $class = "alert alert-success";
+    }else{
+      $message="No se pudo Eliminar con exito";
+      $class="alert alert-danger";
+    }
 
 
 ?>

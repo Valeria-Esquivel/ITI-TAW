@@ -27,13 +27,18 @@
             </div>
             <?php
             include ("database.php");
+            //se trea el id de registro seleccionado de index.php
             $id=$_GET["Registro"];
+            //se crea objeto de la clase database()
             $clientes =  new Database();
+            //se llama al metodo single_record para hacer la cosnulta a la BD
             $res = $clientes->single_record($id);
+            //$array almacena el registro traido de la BD 
             $array = array ();
             foreach ($res as $key => $value) {
             $array[$key] = $value;
             }
+            //se crean mensajes de alerta si se realizo con exito o no la consulta a la BD
             if ($res) {
                 $message = "Datos encontrados";
                 $class = "alert alert-success";
@@ -41,8 +46,6 @@
                 $message="No se pudieron encontrar los datos";
                 $class="alert alert-danger";
               }
-
-
              ?>
              <div class="<?php echo $class?>">
              <?php echo $message;?>
@@ -50,14 +53,14 @@
 
 
            <?php
-           
+           //se actualizan los datos en la BD
            if (isset($_POST) && !empty($_POST)) {
             $nombres = $clientes->sanitize($_POST['nombres']);
             $apellidos = $clientes->sanitize($_POST['apellidos']);
             $telefono = $clientes->sanitize($_POST['telefono']);
             $direccion= $clientes->sanitize($_POST['direccion']);
             $correo_electronico = $clientes->sanitize($_POST['correo_electronico']);
-            
+            //se llama al metodo update para hacer la cosnulta a la BD
             $res = $clientes->update($nombres,$apellidos,$telefono,$direccion,$correo_electronico,$id);
             if ($res) {
               $message = "Datos insertados con exito";

@@ -19,58 +19,37 @@
 
 <div id="single-wrapper">
 <?php
-            include ("database.php");
+			include ("database.php");
             //Objeto de la clase Database
-            $login =  new Database();
+			$login =  new Database();
+			$array = array();
             if (isset($_POST) && !empty($_POST)) {
-                //Datos de entrada con validacion sanitize
+              //Datos de entrada con validacion sanitize
               $username = $login->sanitize($_POST['username']);
-              $password = $login->sanitize($_POST['password']);
-             
-              
-              $res = $login->log($username, $password);
-              $array = array ();
-              foreach ($res as $key => $value) {
-              $array[$key] = $value;
-              }
-              
-             // var_dump($array);
-             /*  if($array["nick"]==NULL && $array["pass"]==NULL){
-                   $dir="index.php";
-               }*/
-    
-              if ($res) {
-                $message = "Datos insertados con exito";
-                $class = "alert alert-success";
-              }else{
-                $message="No se pudieron insertar los datos";
-                $class="alert alert-danger";
-              }
-
-
-             ?>
-           
-           <div class="<?php echo $class?>">
-             <?php echo $message;?>
-           </div>   
-           <?php
-          }
+              $password = $login->sanitize($_POST["password"]);
+			  $res = $login->log($username, $password);
+			  
+			  if($res==!NULL){
+				foreach ($res as $key => $value) {
+				$array[$key] = $value;
+				}
+				if($array["nick"]==!NULL && $array["pass"]==!NULL){
+					 header('Location: index.php');
+					 
+				 }
+			  }
+			 }
+	?>
         
-        
-        ?>
-
-
-
-
-	<form action="#" method="post" class="frm-single" >
+	<form method="post" action=" "  class="frm-single" >
 		<div class="inside">
 			<div class="title"><strong>Ninja</strong>Admin</div>
 			<!-- /.title -->
 			<div class="frm-title">Login</div>
 			<!-- /.frm-title -->
-			<div class="frm-input"><input type="text" placeholder="Username"  id="username" class="frm-inp"><i class="fa fa-user frm-ico"></i></div>
+			<div class="frm-input"><input type="text" placeholder="Username"  name="username" id="username" class="frm-inp"><i class="fa fa-user frm-ico"></i></div>
 			<!-- /.frm-input -->
-			<div class="frm-input"><input type="password" placeholder="Password" id="password"class="frm-inp"><i class="fa fa-lock frm-ico"></i></div>
+			<div class="frm-input"><input type="password" placeholder="Password"  name="password" id="password"class="frm-inp"><i class="fa fa-lock frm-ico"></i></div>
 			<!-- /.frm-input -->
 			<div class="clearfix margin-bottom-20">
 				<div class="pull-left">
@@ -82,9 +61,10 @@
 				<!-- /.pull-right -->
 			</div>
 			<!-- /.clearfix -->
-            <a href= "index.php" class="frm-submit"><i class="fa fa-arrow-circle-right"></i>Login</a> 
-        
-        	<div class="row small-spacing">
+          
+            <button type="submit" class="frm-submit">Login<i class="fa fa-arrow-circle-right"></i></button>
+        	
+			<div class="row small-spacing">
 				<div class="col-sm-12">
 					<div class="txt-login-with txt-center">or login with</div>
                     
