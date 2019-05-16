@@ -9,7 +9,8 @@
         $Otp = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'");
         $sql = new PDO("mysql:host={$dbhost};dbname={$dbname};port=3307", $dbuser, $dbpass, $Otp);
         return $sql;
-    }
+		}
+		//funcion para selecionar los usuarios de la BD
     function users(){
 		global $db;
 		$db = connect_db();
@@ -17,7 +18,8 @@
 		$sql -> execute();
 		$res = $sql->rowCount();
 		return $res;
-    }
+		}
+		//funcion para selecionar los tipos usuarios de la BD
     function tipos(){
 		global $db;
 		$db =connect_db();
@@ -26,6 +28,8 @@
 		$res = $sql->rowCount();
 		return $res;
 	}
+
+	//funcion para selecionar Status la BD
     function status(){
 		global $db;
 		$db = connect_db();
@@ -41,7 +45,9 @@
 		$sql -> execute();
 		$res = $sql->rowCount();
 		return $res;
-    }*/
+		}*/
+		
+		//funcion para traer el inicio de la BD
     function logs(){
 		global $db;
 		$db = connect_db();
@@ -50,7 +56,7 @@
 		$res = $sql->rowCount();
 		return $res;
     }
-    
+    //funcion para seleccionar el status activo de la tabla usuarios de la BD
     function activos(){
 		global $db;
 		$db = connect_db();
@@ -58,7 +64,8 @@
 		$sql -> execute();
 		$res = $sql->rowCount();
 		return $res;
-    }
+		}
+		//funcion para seleccionar el status inactivo de la tabla usuarios de la BD
     function inactivos(){
 		global $db;
 		$db = connect_db();
@@ -67,12 +74,11 @@
 		$res = $sql->rowCount();
 		return $res;
     }
-    
+    //funion para traer todos los registros de la tabla que recibe como parametro 
     function tabla($nombre){
         global $db;
 	    	$db = connect_db();
         $sql = $db->prepare("SELECT * FROM `$nombre`");
-        
         $sql -> execute();
         
 		//$res = $sql->rowCount();

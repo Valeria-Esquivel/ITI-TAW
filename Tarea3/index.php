@@ -50,13 +50,13 @@
               </table>
             </div>
             <?php 
-          // tablas
+          // tablas de la base de datos
           $tablas=["status","usuarios","inicio","tipo_usuario"];
-          //Columnas de las tablas
+          //atributos de las tablas
           $columnas=[["id","nombre"],["id","email","passw","id_status","id_tipoUsuario"],["id","fecha","id_usuario"],["id","nombre"]];
-          //NUmero de tablas
+          //NUmero de tablas que existen
           $n=0;
-
+          //recorre cada tabla de $ablas
           foreach($tablas as $tabla){
             $query = tabla($tabla);  
             echo("Tabla: ".$tabla);
@@ -69,19 +69,19 @@
                     echo("<th>".$columnas[$n][$i]."</th>");
                   }
                   //$r = $res->rowCount();
-                  
-    $count = $query->rowCount();
+                  //contador de las filas 
+               $count = $query->rowCount();
                 ?>
               </thead>
               <tbody>
                 <?php
-                  // filas y columnas
+                  // recorre las filas y columnas
                   for($i=0; $i<$count;$i++){
-                    $d=$query->fetch(PDO::FETCH_ASSOC);
+                    $d=$query->fetch(PDO::FETCH_ASSOC);//filas
                     ?>
                     <tr>
                     <?php
-                    for($j=0; $j<count($columnas[$n]); $j++){
+                    for($j=0; $j<count($columnas[$n]); $j++){//columnas
                       echo("<td>".$d[$columnas[$n][$j]]."</td>");
                     }
                     ?>
