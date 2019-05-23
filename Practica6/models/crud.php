@@ -158,7 +158,63 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
+		#REGISTRO DE CLIENTES
+	#-------------------------------------
+	public function registroHabitacionesModel($datosModel, $tabla){
 
+		#prepare() Prepara una sentencia SQL para ser ejecutada por el método PDOStatement::execute(). La sentencia SQL puede contener cero o más marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada. Ayuda a prevenir inyecciones SQL eliminando la necesidad de entrecomillar manualmente los parámetros.
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (`id`, `tipo_habitacion`, `precio`, `img_hotel` ) VALUES (NULL,:tipo_habitacion,:precio,:imagen)");	
+
+		#bindParam() Vincula una variable de PHP a un parámetro de sustitución con nombre o de signo de interrogación correspondiente de la sentencia SQL que fue usada para preparar la sentencia.
+
+		$stmt->bindParam(":tipo_habitacion", $datosModel["tipo_habitacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(":imagen", $datosModel["imagen"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "success";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+
+	#ACTUALIZAR USUARIO
+	#-------------------------------------
+
+	public function actualizarHabitacionesModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tipo_habitacion = :tipo_habitacion, precio = :precio WHERE id = :id");
+
+		$stmt->bindParam(":tipo_habitacion", $datosModel["tipo_habitacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio", $datosModel["precio"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+
+		if($stmt->execute()){
+
+			return "success";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
     
 }
 ?>

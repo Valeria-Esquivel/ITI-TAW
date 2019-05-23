@@ -12,8 +12,8 @@ class Paginas{
 		}
 
 		if($us==1){
-			if($enlaces == "calcular" ||$enlaces == "venta" ||$enlaces == "ventas" 
-			||$enlaces == "regCliente" ||$enlaces == "productos" ||$enlaces == "ingresar" 
+			if($enlaces == "calcular" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion" 
+			||$enlaces == "regCliente" ||$enlaces == "editarH" ||$enlaces == "ingresar" 
 			||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editarC" 
 			||$enlaces == "editarP" ||$enlaces == "clientes" || $enlaces == "salir"){
 
