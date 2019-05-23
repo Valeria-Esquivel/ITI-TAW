@@ -12,7 +12,10 @@ class Paginas{
 		}
 
 		if($us==1){
-			if($enlaces == "calcular" ||$enlaces == "venta" ||$enlaces == "ventas" ||$enlaces == "regProducto" ||$enlaces == "productos" ||$enlaces == "ingresar" ||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editar" ||$enlaces == "editarP" ||$enlaces == "detalle_venta" || $enlaces == "salir"){
+			if($enlaces == "calcular" ||$enlaces == "venta" ||$enlaces == "ventas" 
+			||$enlaces == "regCliente" ||$enlaces == "productos" ||$enlaces == "ingresar" 
+			||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editarC" 
+			||$enlaces == "editarP" ||$enlaces == "clientes" || $enlaces == "salir"){
 
 				$module =  "views/modules/".$enlaces.".php";
 			
@@ -37,8 +40,8 @@ class Paginas{
 		}
 
 
-		}else if($us==0){
-			if($enlaces == "calcular" ||$enlaces == "venta" ||$enlaces == "ventas" ||$enlaces == "regProducto" ||$enlaces == "productos" ||$enlaces == "ingresar" ||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editar" ||$enlaces == "editarP" ||$enlaces == "detalle_venta" || $enlaces == "salir"){
+		}else if($us==2){
+			if($enlaces == "calcular" ||$enlaces == "regCliente" ||$enlaces == "clientes" ||$enlaces == "regProducto" ||$enlaces == "productos" ||$enlaces == "ingresar" ||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editar" ||$enlaces == "editarP" ||$enlaces == "detalle_venta" || $enlaces == "salir"){
 
 				$module =  "views/modules/".$enlaces.".php";
 			
