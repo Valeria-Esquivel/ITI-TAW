@@ -28,9 +28,9 @@
 	
 		<li><a href="index.php?action=registro&idus=1">Usuarios</a></li>
 		<li><a href="index.php?action=clientes&idus=1">Clientes</a></li>
-		<li><a href="index.php?action=productos&idus=1">Consultas</a></li>
 		<li><a href="index.php?action=habitaciones&idus=1">Habitaciones</a></li>
-		<li><a href="index.php?action=productos&idus=1">Reservas</a></li>
+		<li><a href="index.php?action=reservas&idus=1">Reservas</a></li>
+		<li><a href="index.php?action=productos&idus=1">Consultas</a></li>
 		<li><a href="index.php?action=salir">Salir</a></li>
 
 <?php

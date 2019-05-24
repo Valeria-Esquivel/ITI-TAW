@@ -12,10 +12,10 @@ class Paginas{
 		}
 
 		if($us==1){
-			if($enlaces == "calcular" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion" 
+			if($enlaces == "reservas" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion" 
 			||$enlaces == "regCliente" ||$enlaces == "editarH" ||$enlaces == "ingresar" 
 			||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editarC" 
-			||$enlaces == "editarP" ||$enlaces == "clientes" || $enlaces == "salir"){
+			||$enlaces == "verHabitacion" ||$enlaces == "clientes" || $enlaces == "salir"){
 
 				$module =  "views/modules/".$enlaces.".php";
 			

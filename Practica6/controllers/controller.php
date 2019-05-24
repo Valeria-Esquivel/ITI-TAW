@@ -238,7 +238,9 @@ class MvcController{
 				<td><a href="index.php?action=editarH&idus=1&idEdH='.$item["id"].'">
 				<img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
 				<a href="index.php?action=habitaciones&idus=1&idBorrarH='.$item["id"].'">
-				<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a></a></td>
+				<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a>
+				<a href="index.php?action=verHabitacion&idus=1&idVH='.$item["id"].'">
+				<img src="imagenes/ver.png" alt="Enviar" width="20" height="20"></a></td>
 			</tr>';
 
 		}
@@ -303,7 +305,7 @@ class MvcController{
 	
 	}
 
-	#EDITAR CLIENTE
+	#EDITAR HABITACION
 	#------------------------------------
 
 	public function editarHabitacionesController(){
@@ -329,7 +331,7 @@ class MvcController{
 
 	}
 
-	#ACTUALIZAR CLIENTE
+	#ACTUALIZAR HABITACION
 	#------------------------------------
 	public function actualizarHabitacionesController(){
 
@@ -357,6 +359,88 @@ class MvcController{
 			}
 
 		}
+	
+	}
+
+	#ver HABITACION
+	#------------------------------------
+
+	public function verHabitacionesController(){
+
+		$datosController = $_GET["idVH"];
+		$respuesta = Datos::editar($datosController, "habitaciones");
+		
+
+		echo'<table border="0">
+		<thead>
+		<center>
+		<img src="'.$respuesta["img_hotel"].'" alt="Enviar" width="300" height="200">
+		</center>	
+			<tr>
+                <th>Numero de Habitacion: </th>
+				<th>'.$respuesta["id"].'</th>
+			</tr>
+			<tr>
+                <th>Habitacion: </th>
+				<th>'.$respuesta["tipo_habitacion"].'</th>
+			</tr>
+			<tr>
+			<th>Precio</th>
+			<th>'.$respuesta["precio"].'</th>
+		    </tr>
+		</thead>
+		</table>';
+		
+	}
+
+	#VISTA DE HABITACIONES
+	#------------------------------------
+
+	public function vistaReservasController(){
+
+		$respuesta = Datos::vistas("reservas");
+		#El constructor foreach proporciona un modo sencillo de iterar sobre arrays. foreach funciona sólo sobre arrays y objetos, y emitirá un error al intentar usarlo con una variable de un tipo diferente de datos o una variable no inicializada.
+        
+		foreach($respuesta as $row => $item){
+		echo'<tr>
+		        <td>'.$item["id"].'</td>
+				<td>'.$item["id_cliente"].'</td>
+				<td>'.$item["id_habitacion"].'</td>
+				<td>'.$item["fecha_entrada"].'</td>
+				<td>'.$item["dias_reserva"].'</td>
+				<td>'.$item["pago_total"].'</td>
+	
+				<td><a href="index.php?action=editarH&idus=1&idEdH='.$item["id"].'">
+				<img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
+				<a href="index.php?action=reservas&idus=1&idBorrarR='.$item["id"].'">
+				<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a>
+				<a href="index.php?action=verHabitacion&idus=1&idVH='.$item["id"].'">
+				<img src="imagenes/ver.png" alt="Enviar" width="20" height="20"></a></td>
+			</tr>';
+
+		}
+
+	}
+
+	#BORRAR HABITACIONES
+	#------------------------------------
+	public function borrarReservasController(){
+
+		if(isset($_GET["idBorrarR"])){
+
+			$datosController = $_GET["idBorrarR"];
+			
+			$respuesta = Datos::borrar($datosController, "reservas");
+			echo $respuesta;
+			
+			if($respuesta == "success"){
+
+				header("location:index.php?action=reservas&idus=1");
+			
+			}
+
+		}
+
 	
 	}
 
