@@ -131,7 +131,7 @@ class Datos extends Conexion{
 
 	}
 
-	#ACTUALIZAR USUARIO
+	#ACTUALIZAR CLIENTES
 	#-------------------------------------
 
 	public function actualizarClientesModel($datosModel, $tabla){
@@ -158,7 +158,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
-		#REGISTRO DE CLIENTES
+		#REGISTRO DE HABITACIONES
 	#-------------------------------------
 	public function registroHabitacionesModel($datosModel, $tabla){
 
@@ -189,7 +189,7 @@ class Datos extends Conexion{
 	}
 
 
-	#ACTUALIZAR USUARIO
+	#ACTUALIZAR HABITACION
 	#-------------------------------------
 
 	public function actualizarHabitacionesModel($datosModel, $tabla){
@@ -211,6 +211,82 @@ class Datos extends Conexion{
 			return "error";
 
 		}
+
+		$stmt->close();
+
+	}
+
+
+	#REGISTRO DE resevciones
+	#-------------------------------------
+	public function registroReservasModel($datosModel, $tabla){
+
+		#prepare() Prepara una sentencia SQL para ser ejecutada por el método PDOStatement::execute(). La sentencia SQL puede contener cero o más marcadores de parámetros con nombre (:name) o signos de interrogación (?) por los cuales los valores reales serán sustituidos cuando la sentencia sea ejecutada. Ayuda a prevenir inyecciones SQL eliminando la necesidad de entrecomillar manualmente los parámetros.
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (`id_cliente`, `id_habitacion`, `fecha_entrada`, `dias_reserva`, `pago_total`, `estado` ) VALUES (:id_cliente,:id_habitacion,:fecha_entrada,:dias_reserva,:pago_total,:estado)");	
+
+		#bindParam() Vincula una variable de PHP a un parámetro de sustitución con nombre o de signo de interrogación correspondiente de la sentencia SQL que fue usada para preparar la sentencia.
+
+		$stmt->bindParam(":id_cliente", $datosModel["id_cliente"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_habitacion", $datosModel["id_habitacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_entrada", $datosModel["fecha_entrada"], PDO::PARAM_STR);
+		$stmt->bindParam(":dias_reserva", $datosModel["dias_reserva"], PDO::PARAM_STR);
+		$stmt->bindParam(":pago_total", $datosModel["pago_total"], PDO::PARAM_STR);
+		$stmt->bindParam(":estado", $datosModel["estado"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "success";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+	#ACTUALIZAR RESERVACION
+	#-------------------------------------
+
+	public function actualizarReservacionModel($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_cliente = :id_cliente, id_habitacion = :id_habitacion, fecha_entrada = :fecha_entrada, dias_reserva = :dias_reserva, pago_total = :pago_total, estado = :estado WHERE id = :id");
+
+		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_cliente", $datosModel["id_cliente"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_habitacion", $datosModel["id_habitacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_entrada", $datosModel["fecha_entrada"], PDO::PARAM_INT);
+		$stmt->bindParam(":dias_reserva", $datosModel["dias_reserva"], PDO::PARAM_INT);
+		$stmt->bindParam(":pago_total", $datosModel["pago_total"], PDO::PARAM_INT);
+		$stmt->bindParam(":estado", $datosModel["estado"], PDO::PARAM_INT);
+
+		if($stmt->execute()){
+
+			return "success";
+
+		}
+
+		else{
+
+			return "error";
+
+		}
+
+		$stmt->close();
+
+	}
+
+	public function consultarG($d1,$d2, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE  `fecha_entrada` BETWEEN '$d1' AND '$d2'");
+		$stmt->execute();
+
+		return $stmt->fetchAll();
 
 		$stmt->close();
 

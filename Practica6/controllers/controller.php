@@ -374,20 +374,24 @@ class MvcController{
 		echo'<table border="0">
 		<thead>
 		<center>
-		<img src="'.$respuesta["img_hotel"].'" alt="Enviar" width="300" height="200">
-		</center>	
+		<img src="'.$respuesta["img_hotel"].'" alt="Enviar" width="400" height="200">
+		<br/>
+		<br/>
+		<br/>
+		
 			<tr>
-                <th>Numero de Habitacion: </th>
-				<th>'.$respuesta["id"].'</th>
+                <th><center>Numero de Habitacion: </center></th>
+				<th><center>'.$respuesta["id"].'</center></th>
 			</tr>
 			<tr>
-                <th>Habitacion: </th>
-				<th>'.$respuesta["tipo_habitacion"].'</th>
+                <th><center>Habitacion:  </center></th>
+				<th><center>'.$respuesta["tipo_habitacion"].' </center></th>
 			</tr>
 			<tr>
-			<th>Precio</th>
-			<th>'.$respuesta["precio"].'</th>
-		    </tr>
+			<th><center>Precio </center></th>
+			<th><center>'.$respuesta["precio"].' </center></th>
+			</tr>
+			
 		</thead>
 		</table>';
 		
@@ -410,11 +414,11 @@ class MvcController{
 				<td>'.$item["dias_reserva"].'</td>
 				<td>'.$item["pago_total"].'</td>
 	
-				<td><a href="index.php?action=editarH&idus=1&idEdH='.$item["id"].'">
+				<td><a href="index.php?action=editarR&idus=1&idEdR='.$item["id"].'">
 				<img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
 				<a href="index.php?action=reservas&idus=1&idBorrarR='.$item["id"].'">
 				<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a>
-				<a href="index.php?action=verHabitacion&idus=1&idVH='.$item["id"].'">
+				<a href="index.php?action=verReserva&idus=1&idVR='.$item["id"].'">
 				<img src="imagenes/ver.png" alt="Enviar" width="20" height="20"></a></td>
 			</tr>';
 
@@ -443,6 +447,174 @@ class MvcController{
 
 	
 	}
+
+
+		#llenar registro Reservaciones
+	#------------------------------------
+
+	public function registroReservasController(){
+		$res = Datos::vistas("clientes");
+		$res2 = Datos::vistas("habitaciones");
+		   echo '<form method="post" >';
+           echo '<h4>Cliente: </h4>';
+		   echo ' <select name="id_cliente">';
+		   foreach($res as $row => $item){
+			echo'<option value="'.$item["id"].'">'.$item["nombre"].' '.$item["apellido"].'</option>';
+			}
+			
+			echo '</select>';
+			echo '<h4>Habitacion: </h4>';
+			echo ' <select name="id_habitacion">';
+		   foreach($res2 as $row => $item){
+			echo'<option value="'.$item["id"].'">'.$item["tipo_habitacion"].'</option>';
+			}
+			echo '</select>';
+	         echo'
+			 <input  type="date" name="fechaR" required>
+			 <input type="text" placeholder="Numero de dias de reserva" name="dias_reserva" required>
+			 <input type="text" placeholder="Estado de Reserva" name="estado" required>
+			 <input type="submit" value="Guardar">
+		</form>
+			 ';
+
+	}
+
+
+	#Guardar reservaciones
+	#------------------------------------
+	public function guardarReservasController(){
+		$datosController=$_POST["id_habitacion"];
+		$res2 = Datos::editar($datosController, "habitaciones");
+		$pago=$res2["precio"]*$_POST["dias_reserva"];
+	
+		if(isset($_POST["id_cliente"])){
+
+			$datosController = array( "id_cliente"=>$_POST["id_cliente"],
+							          "id_habitacion"=>$_POST["id_habitacion"], 
+									  "fecha_entrada"=>$_POST["fechaR"],
+									  "dias_reserva"=>$_POST["dias_reserva"],
+									  "pago_total"=>$pago,
+									  "estado"=>$_POST["estado"],
+									  );
+			
+			$respuesta = Datos::registroReservasModel($datosController, "reservas");
+
+			if($respuesta == "success"){
+
+				header("location:index.php?action=reservas&idus=1");
+
+			}
+
+			else{
+
+				echo "error";
+
+			}
+
+		}
+	
+	}
+
+
+	#EDITAR HABITACION
+	#------------------------------------
+	
+	public function editarReservaController(){
+
+		$datosController = $_GET["idEdR"];
+		$respuesta = Datos::editar($datosController, "reservas");
+
+		echo'<form method="post" enctype="multipart/form-data" >
+			 <input type="hidden" value="'.$respuesta["id"].'" name="idEditarR">
+			 <input type="text" value="'.$respuesta["id_cliente"].'" name="id_clienteEditar" required>
+			 		
+			 <input type="text" value="'.$respuesta["id_habitacion"].'" name="id_habitacionEditar" required>
+			 <input type="text" value="'.$respuesta["fecha_entrada"].'" name="fecha_entradaEditar" required>
+			 <input type="text" value="'.$respuesta["dias_reserva"].'" name="dias_reservaEditar" required>
+			 <input type="text" value="'.$respuesta["pago_total"].'" name="pago_totalEditar" required>
+			 <input type="text" value="'.$respuesta["estado"].'" name="estadoEditar" required>
+
+			 <input type="submit" value="Actualizar">
+			 </form>
+			 ';
+
+	}
+
+	#ACTUALIZAR RESERVAS
+	#------------------------------------
+	public function actualizarReservaController(){
+		$ids=$_GET["idEdR"];
+		echo $ids;
+
+
+		if(isset($_POST["id_clienteEditar"])){
+
+			$datosController = array( "id"=>$ids,
+									  "id_cliente"=>$_POST["id_clienteEditar"],
+									  "id_habitacion"=>$_POST["id_habitacionEditar"],
+									  "fecha_entrada"=>$_POST["fecha_entradaEditar"],
+									  "dias_reserva"=>$_POST["dias_reservaEditar"],
+									  "pago_total"=>$_POST["pago_totalEditar"],
+									  "estado"=>$_POST["estadoEditar"],							          
+									  );
+			var_dump($datosController);
+			$respuesta = Datos::actualizarReservacionModel($datosController, "reservas");
+			echo $respuesta;
+
+			if($respuesta == "success"){
+
+				header("location:index.php?action=reservas&idus=1");
+
+			}
+
+			else{
+
+				echo "error";
+
+			}
+
+		}
+	
+	}
+    //CALCULAR GANANCIAS POR MES
+	public function GananciasController(){
+		$mesI=$_POST["mes"].'-01';
+		$mesF=$_POST["mes"].'-31';
+		$pago_total=0;
+		
+				
+		$res = Datos::consultarG($mesI,$mesF,"reservas");
+		foreach($res as $row => $item){
+			$pago_total=$pago_total+$item["pago_total"];
+		
+		}
+		echo "Ganancia total del mes: ";
+		echo $pago_total;
+		echo '<table border=1>';
+		echo '<thead>			
+		<tr>
+			<th>NUMERO RESERVA</th>
+			<th>FECHA</th>
+			<th>PRECIO</th>
+		</tr>
+		</thead>';
+		echo '<tbody>';
+		foreach($res as $row => $item){
+			echo'<tr>
+			<td>'.$item["id"].'</td>
+			<td>'.$item["fecha_entrada"].'</td>
+			<td>'.$item["pago_total"].'</td>
+			
+			</tr>';
+		}
+			echo '</tbody>
+			</table>
+			';
+			
+			
+
+	}
+
 
 
 

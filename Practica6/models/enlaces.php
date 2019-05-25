@@ -14,8 +14,9 @@ class Paginas{
 		if($us==1){
 			if($enlaces == "reservas" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion" 
 			||$enlaces == "regCliente" ||$enlaces == "editarH" ||$enlaces == "ingresar" 
-			||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editarC" 
-			||$enlaces == "verHabitacion" ||$enlaces == "clientes" || $enlaces == "salir"){
+			||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editarC" || $enlaces == "editarR" 
+			||$enlaces == "verHabitacion" ||$enlaces == "clientes" || $enlaces == "ganancia" ||$enlaces == "salir"
+			|| $enlaces == "regReserva"){
 
 				$module =  "views/modules/".$enlaces.".php";
 			

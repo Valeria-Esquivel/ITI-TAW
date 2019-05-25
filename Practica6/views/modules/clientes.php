@@ -11,29 +11,39 @@ if(!$_SESSION["validar"]){
 }
 
 ?>
+<body class="wide comments example dt-example-bootstrap4">
+<div class= "container">
+       <div class = "table-wrapper">
+            <div class= "table-title">
+                <div class ="row">
+                      <div class="col-sm-8"><h2>Clientes</b></h2></div>
+                      <div class="col-sm-4">
+                           <a href="index.php?action=regCliente&idus=1" class="btn btn-info add-new"><i
+                           class="fa fa-arrow-left"></i>Nuevo Registro</a> 
+                      </div>
+                </div>
+            </div>
+			<div class="row">
 
-<h1>CLIENTES</h1>
+<br/>
+<br/>
+<br/>
 
-	<table border="1">
+
+	<table id="example" class="table table-striped table-bordered" style="width:100%">
 		
 		<thead>
 			
 			<tr>
-                <th>Numero de cliente</th>
+			    <th>Numero de cliente</th>
 				<th>Nombre</th>
 				<th>Apellido</th>
 				<th>Tipo de Cliente</th>
 
-				<td><center><a href="index.php?action=regCliente&idus=1">
-				<img src="imagenes/iconoG1.png" alt="Enviar" width="30" height="30"></center></a>
-                
-                </td>
-				
-                
-
+				<td><a href="index.php?action=regCliente&idus=1">
+				</a></td>
 
 			</tr>
-
 		</thead>
 
 		<tbody>
@@ -49,6 +59,7 @@ if(!$_SESSION["validar"]){
 		</tbody>
 
 	</table>
+	</div> 
 
 <?php
 

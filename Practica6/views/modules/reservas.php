@@ -12,20 +12,40 @@ if(!$_SESSION["validar"]){
 
 ?>
 
-<h1>Habitaciones</h1>
 
-	<table border="1">
+
+<body class="wide comments example dt-example-bootstrap4">
+<div class= "container">
+       <div class = "table-wrapper">
+            <div class= "table-title">
+                <div class ="row">
+                      <div class="col-sm-8"><h2>Reservaciones</b></h2></div>
+                      <div class="col-sm-4">
+                           <a href="index.php?action=regReserva&idus=1" class="btn btn-info add-new"><i
+                           class="fa fa-arrow-left"></i>Nuevo Registro</a> 
+                      </div>
+                </div>
+            </div>
+			<div class="row">
+
+
+<br/>
+<br/>
+<br/>
+
+	<table id="example" class="table table-striped table-bordered" style="width:100%">
+		
 		
 		<thead>
 			
 			<tr>
-                <th> Numero de reserva </th>
+                <th>Numero de reserva </th>
                 <th>Numero de cliente</th>
 				<th>numero de habitacion</th>
 				<th>fecha de entrada</th>
                 <th>Dias de reserva</th>
                 <th>Pago Total</th>
-                <td><center><a href="index.php?action=regHabitacion&idus=1">
+                <td><center><a href="index.php?action=regReserva&idus=1">
 				<img src="imagenes/iconoG1.png" alt="Enviar" width="30" height="30"></center></a>
                 
                 </td>
@@ -49,6 +69,7 @@ if(!$_SESSION["validar"]){
 		</tbody>
 
 	</table>
+	</div> 
 
 <?php
 
