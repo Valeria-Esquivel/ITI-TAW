@@ -16,8 +16,8 @@
 	?>
 	
 	    <li><a href="index.php?action=clientes&idus=2">Clientes</a></li>
-		<li><a href="index.php?action=registro&idus=2">Habitaciones</a></li>
-		<li><a href="index.php?action=productos&idus=2">Reservas</a></li>
+		<li><a href="index.php?action=habitaciones&idus=2">Habitaciones</a></li>
+		<li><a href="index.php?action=reservas&idus=2">Reservas</a></li>
 		<li><a href="index.php?action=salir&idus=2">Salir</a></li>
 
 

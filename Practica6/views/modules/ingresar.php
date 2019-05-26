@@ -4,7 +4,7 @@
 		
 		<input type="text" placeholder="Usuario" name="usuarioIngreso" required>
 
-		<input type="password" placeholder="Contraseña" name="passwordIngreso" required>
+		<input type="password" placeholder="Password" name="passwordIngreso" required>
 
 		<input type="submit" value="Enviar">
 

@@ -14,7 +14,7 @@ class Paginas{
 		if($us==1){
 			if($enlaces == "reservas" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion" 
 			||$enlaces == "regCliente" ||$enlaces == "editarH" ||$enlaces == "ingresar" 
-			||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editarC" || $enlaces == "editarR" 
+			||$enlaces == "registro"||$enlaces == "verReserva" || $enlaces == "usuarios" || $enlaces == "editarC" || $enlaces == "editarR" 
 			||$enlaces == "verHabitacion" ||$enlaces == "clientes" || $enlaces == "ganancia" ||$enlaces == "salir"
 			|| $enlaces == "regReserva"){
 
@@ -42,7 +42,9 @@ class Paginas{
 
 
 		}else if($us==2){
-			if($enlaces == "calcular" ||$enlaces == "regCliente" ||$enlaces == "clientes" ||$enlaces == "regProducto" ||$enlaces == "productos" ||$enlaces == "ingresar" ||$enlaces == "registro" || $enlaces == "usuarios" || $enlaces == "editar" ||$enlaces == "editarP" ||$enlaces == "detalle_venta" || $enlaces == "salir"){
+			if($enlaces == "reservas" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion"||$enlaces == "regCliente" ||$enlaces == "clientes"
+			 ||$enlaces == "ingresar" ||$enlaces == "registro"  ||$enlaces == "verHabitacion" 
+			 ||  $enlaces == "habitaciones" || $enlaces == "regReserva"||$enlaces == "verReserva"){
 
 				$module =  "views/modules/".$enlaces.".php";
 			

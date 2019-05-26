@@ -32,16 +32,19 @@ class MvcController{
 		include $respuesta;
 
     }
-    	#INGRESO DE USUARIOS
+    #INGRESO DE USUARIOS
 	#------------------------------------
 	public function ingresoUsuarioController(){
+		
 
 		if(isset($_POST["usuarioIngreso"])){
+			
 
 			$datosController = array( "nombre"=>$_POST["usuarioIngreso"], 
 								      "password"=>$_POST["passwordIngreso"]);
-
+									  echo"/**************-*****";
 			$respuesta = Datos::ingresoUsuarioModel($datosController, "usuarios");
+			
 
 			if($respuesta["nombre"] == $_POST["usuarioIngreso"] && $respuesta["password"] == $_POST["passwordIngreso"]){
 
@@ -51,17 +54,15 @@ class MvcController{
 
 				$us= $respuesta["tipo_usuario"];
 				if($us==2){
-					header("location:index.php?action=usuarios&idus=2");
+					header("location:index.php?action=clientes&idus=2");
 				}else if($us==1){
-					header("location:index.php?action=usuarios&idus=1");
+					header("location:index.php?action=clientes&idus=1");
 				}
-				
-
-				
 				
 			}
 
 			else{
+				echo "sin conexion";
 
 				header("location:index.php?action=fallo");
 
@@ -110,12 +111,14 @@ class MvcController{
 		        <td>'.$item["id"].'</td>
 				<td>'.$item["nombre"].'</td>
 				<td>'.$item["apellido"].'</td>
-				<td>'.$item["tipo"].'</td>
-				<td><a href="index.php?action=editarC&idus=1&idEd='.$item["id"].'">
-				<img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
-				<a href="index.php?action=clientes&idus=1&idBorrar='.$item["id"].'">
-				<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a></a></td>
-			</tr>';
+				<td>'.$item["tipo"].'</td> <td>';
+				if($_GET["idus"]==1){
+					echo '<a href="index.php?action=editarC&idus=1&idEd='.$item["id"].'">
+					<img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
+					<a href="index.php?action=clientes&idus=1&idBorrar='.$item["id"].'">
+					<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a></a>';
+				}
+		echo '</td></tr>';
 
 		}
 
@@ -158,8 +161,13 @@ class MvcController{
 			$respuesta = Datos::registroClientesModel($datosController, "clientes");
 
 			if($respuesta == "success"){
+				if($_GET["idus"]==1){
 
 				header("location:index.php?action=clientes&idus=1");
+				} else if($_GET["idus"]==2){
+
+					header("location:index.php?action=clientes&idus=2");
+					}
 
 			}
 
@@ -233,15 +241,22 @@ class MvcController{
 		echo'<tr>
 		        <td>'.$item["id"].'</td>
 				<td>'.$item["tipo_habitacion"].'</td>
-				<td>'.$item["precio"].'</td>
+				<td>'.$item["precio"].'</td><td>';
 				
-				<td><a href="index.php?action=editarH&idus=1&idEdH='.$item["id"].'">
+				if($_GET["idus"]==1){
+					echo '
+				
+				<a href="index.php?action=editarH&idus=1&idEdH='.$item["id"].'">
 				<img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
 				<a href="index.php?action=habitaciones&idus=1&idBorrarH='.$item["id"].'">
 				<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a>
-				<a href="index.php?action=verHabitacion&idus=1&idVH='.$item["id"].'">
-				<img src="imagenes/ver.png" alt="Enviar" width="20" height="20"></a></td>
-			</tr>';
+				
+			';}
+		echo '
+		
+		<a href="index.php?action=verHabitacion&idus='.$_GET["idus"].'&idVH='.$item["id"].'">
+				<img src="imagenes/ver.png" alt="Enviar" width="20" height="20"></a>
+		</td></tr>';
 
 		}
 
@@ -270,13 +285,22 @@ class MvcController{
 
 			if($respuesta == "success"){
 
-				header("location:index.php?action=habitaciones&idus=1");
+				if($_GET["idus"]==1){
+					header("location:index.php?action=habitaciones&idus=1");
+				} else if($_GET["idus"]==2){
+					header("location:index.php?action=habitaciones&idus=2");
+				}
+	
 
 			}
 
 			else{
 
-				header("location:index.php?action=habitaciones&idus=1");
+				if($_GET["idus"]==1){
+					header("location:index.php?action=habitaciones&idus=1");
+				} else if($_GET["idus"]==2){
+					header("location:index.php?action=habitaciones&idus=2");
+				}
 			}
 
 		}
@@ -412,15 +436,20 @@ class MvcController{
 				<td>'.$item["id_habitacion"].'</td>
 				<td>'.$item["fecha_entrada"].'</td>
 				<td>'.$item["dias_reserva"].'</td>
-				<td>'.$item["pago_total"].'</td>
-	
-				<td><a href="index.php?action=editarR&idus=1&idEdR='.$item["id"].'">
+				<td>'.$item["pago_total"].'</td><td>';
+				if($_GET["idus"]==1){
+				echo '
+				<a href="index.php?action=editarR&idus=1&idEdR='.$item["id"].'">
 				<img src="imagenes/iconoE.png" alt="Enviar" width="20" height="20"></a>
 				<a href="index.php?action=reservas&idus=1&idBorrarR='.$item["id"].'">
 				<img src="imagenes/delete.png" alt="Enviar" width="20" height="20"></a>
-				<a href="index.php?action=verReserva&idus=1&idVR='.$item["id"].'">
-				<img src="imagenes/ver.png" alt="Enviar" width="20" height="20"></a></td>
-			</tr>';
+				
+			    ';
+		    }
+			echo '
+			<a href="index.php?action=verReserva&idus='.$_GET["idus"].'&idVR='.$item["id"].'">
+				<img src="imagenes/ver.png" alt="Enviar" width="20" height="20"></a>
+			</td></tr>';
 
 		}
 
@@ -447,7 +476,6 @@ class MvcController{
 
 	
 	}
-
 
 		#llenar registro Reservaciones
 	#------------------------------------
@@ -501,7 +529,11 @@ class MvcController{
 
 			if($respuesta == "success"){
 
-				header("location:index.php?action=reservas&idus=1");
+				if($_GET["idus"]==1){
+					header("location:index.php?action=reservas&idus=1");
+				} else if($_GET["idus"]==2){
+					header("location:index.php?action=reservas&idus=2");
+				}
 
 			}
 
@@ -581,7 +613,6 @@ class MvcController{
 		$mesI=$_POST["mes"].'-01';
 		$mesF=$_POST["mes"].'-31';
 		$pago_total=0;
-		
 				
 		$res = Datos::consultarG($mesI,$mesF,"reservas");
 		foreach($res as $row => $item){
@@ -590,6 +621,7 @@ class MvcController{
 		}
 		echo "Ganancia total del mes: ";
 		echo $pago_total;
+		if($pago_total!=0){
 		echo '<table border=1>';
 		echo '<thead>			
 		<tr>
@@ -604,18 +636,69 @@ class MvcController{
 			<td>'.$item["id"].'</td>
 			<td>'.$item["fecha_entrada"].'</td>
 			<td>'.$item["pago_total"].'</td>
-			
 			</tr>';
 		}
 			echo '</tbody>
 			</table>
 			';
+	 }
 			
 			
 
 	}
 
+	#ver HABITACION
+	#------------------------------------
 
+	public function verReservaController(){
+		
+		$datosController = $_GET["idVR"];
+		$res= Datos::editar($datosController, "reservas");
+		$datosController = $res["id_habitacion"];
+		$respuesta = Datos::editar($datosController, "habitaciones");
+		$datosController = $res["id_cliente"];
+		$res2 = Datos::editar($datosController, "clientes");
+		
+		if($res["estado"]==1){
+			$estado="Pagado";
+
+		}
+		if($res["estado"]==0){
+			$estado="Pagado";
+
+		}
+		
+		echo'<table border="0">
+		<thead>
+		
+		
+		
+		<br/>
+		   <tr><th><img src="'.$respuesta["img_hotel"].'" alt="Enviar" width="400" height="200"></th></tr>
+			<tr>
+				<th><center>Numero de Reservacion: '.$res["id"].'</th>
+			</tr>
+		
+			<tr>
+                <th><center>Numero de Habitacion: '.$res["id_habitacion"].'</th>
+			</tr>
+			<tr>
+                <th><center>Habitacion: '.$respuesta["tipo_habitacion"].'</th>
+			</tr>
+			<tr>
+                <th><center>Cliente: '.$res2["nombre"].' '.$res2["apellido"].'</th>
+			</tr>
+			<tr>
+			    <th><center>Precio Total: '.$res["pago_total"].'</th>
+			</tr>
+			<tr>
+			    <th><center>Estado del la cuenta: '.$estado.'</th>
+			</tr>
+			
+		</thead>
+		</table>';
+		
+	}
 
 
 

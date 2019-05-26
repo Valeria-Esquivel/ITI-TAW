@@ -12,14 +12,16 @@ if(!$_SESSION["validar"]){
 
 ?>
 
-<h1>HABITACION</h1>
+<h1>RESERVACIONES</h1>
 
 <form method="post">
 	
 	<?php
 	
-		$editarUsuario = new MvcController();
-		$editarUsuario -> verHabitacionesController();
+	
+		$verReserva = new MvcController();
+		$verReserva -> verReservaController();
+
 
 
 

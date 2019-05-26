@@ -20,9 +20,15 @@ if(!$_SESSION["validar"]){
                 <div class ="row">
                       <div class="col-sm-8"><h2>Habitaciones</b></h2></div>
                       <div class="col-sm-4">
-                           <a href="index.php?action=regHabitacion&idus=1" class="btn btn-info add-new"><i
-                           class="fa fa-arrow-left"></i>Nuevo Registro</a> 
+					  <?php if($_GET["idus"]==1){ ?>
+				<a href="index.php?action=regHabitacion&idus=1" class="btn btn-info add-new">
+				<?php } else if($_GET["idus"]==2){ ?>
+					<a href="index.php?action=regHabitacion&idus=2" class="btn btn-info add-new" >
+				<?php }   ?>
+                           </i>Nuevo Registro</a> 
                       </div>
+                </div>
+
                 </div>
             </div>
 			<div class="row">

@@ -1,4 +1,4 @@
-<h1>REGISTRO DE CLIENTES</h1>
+<h1>REGISTRO DE HABITACIONES</h1>
 
 <form method="post" enctype="multipart/form-data" >
 	
