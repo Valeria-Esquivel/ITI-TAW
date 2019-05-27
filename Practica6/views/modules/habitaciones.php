@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+//valida el acceso del usuario
 if(!$_SESSION["validar"]){
 
 	header("location:index.php?action=ingresar");
@@ -59,9 +59,9 @@ if(!$_SESSION["validar"]){
 			
 			<?php
 
-			$vistaUsuario = new MvcController();
-			$vistaUsuario -> vistaHabitacionesController();
-			$vistaUsuario -> borrarHabitacionesController();
+			$vistahabitacion = new MvcController(); 
+			$vistahabitacion -> vistaHabitacionesController();//instancia el objeto de la clase MvcController
+			$vistahabitacion -> borrarHabitacionesController();//utiliza el metodo  vistaHabitacionesController y borrarHabitacionesController de la clase 
 
 			?>
 

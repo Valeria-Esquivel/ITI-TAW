@@ -3,7 +3,8 @@
 
 	<?php
 	$us=0;
-	
+	//utiliza GET para utilizar idus obtenido de la url
+	//idus guarda el tipo de usuario que ingresa en donde 1 es Administrador y 2 es un usuario normal	
 	$us=$_GET["idus"];
 	if($us==0){
 		?>
@@ -11,7 +12,7 @@
 		<?php
 	}
 
-
+    //restringe la entrada al usuario normal de todas las secciones o paginas del sitio
 	if($us==2){
 	?>
 	
@@ -22,7 +23,7 @@
 
 
 	<?php
-	}else if($us==1){
+	}else if($us==1){//comprueba que el usuario ingresado sea un administrador con  privilegios a las paginas
 	?>
 
 	

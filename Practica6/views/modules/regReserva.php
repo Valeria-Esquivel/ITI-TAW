@@ -19,6 +19,7 @@ if(!$_SESSION["validar"]){
 	<?php
 	
 		$regReserva= new MvcController();
+		//utiliza la el metodo de la clase MvcController de controller/controller.php
 		$regReserva -> registroReservasController();
 		$regReserva -> guardarReservasController();
 

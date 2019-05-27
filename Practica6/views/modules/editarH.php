@@ -20,9 +20,9 @@ if(!$_SESSION["validar"]){
 	$us=0;
 	$us=$_GET["idus"];
 	if($us==1){
-		$editarUsuario = new MvcController();
-		$editarUsuario -> editarHabitacionesController();
-		$editarUsuario -> actualizarHabitacionesController();
+		$editarHabitaciones = new MvcController();//utiliza la el metodo de la clase MvcController de controller/controller.php
+		$editarHabitaciones -> editarHabitacionesController();
+		$editarHabitaciones -> actualizarHabitacionesController();
 
 	}
 

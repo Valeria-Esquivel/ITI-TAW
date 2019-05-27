@@ -15,7 +15,7 @@
 <?php
 
 $registro = new MvcController();
-$registro -> registroUsuarioController();
+$registro -> registroUsuarioController();//utiliza la el metodo de la clase MvcController de controller/controller.php
 
 if(isset($_GET["action"])){
 

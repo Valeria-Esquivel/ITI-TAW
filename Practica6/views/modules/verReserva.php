@@ -20,7 +20,7 @@ if(!$_SESSION["validar"]){
 	
 	
 		$verReserva = new MvcController();
-		$verReserva -> verReservaController();
+		$verReserva -> verReservaController();//utiliza la el metodo de la clase MvcController de controller/controller.php
 
 
 

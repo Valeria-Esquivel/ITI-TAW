@@ -15,7 +15,8 @@
 <?php
 
 $ingreso = new MvcController();
-$ingreso -> ingresoUsuarioController();
+$ingreso -> ingresoUsuarioController();//utiliza la el metodo de la clase MvcController de controller/controller.php
+
 
 if(isset($_GET["action"])){
 

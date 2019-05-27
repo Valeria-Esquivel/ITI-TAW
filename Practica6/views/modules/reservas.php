@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+//valida el acceso del usuario
 if(!$_SESSION["validar"]){
 
 	header("location:index.php?action=ingresar");
@@ -68,9 +68,9 @@ if(!$_SESSION["validar"]){
 			
 			<?php
 
-			$vistaUsuario = new MvcController();
-			$vistaUsuario -> vistaReservasController();
-			$vistaUsuario ->  borrarReservasController();
+			$vistaReserva = new MvcController();
+			$vistaReserva -> vistaReservasController();//utiliza la el metodo de la clase MvcController de controller/controller.php
+			$vistaReserva ->  borrarReservasController();//utiliza la el metodo de la clase MvcController de controller/controller.php
 
 			?>
 

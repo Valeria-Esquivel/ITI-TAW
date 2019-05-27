@@ -6,7 +6,7 @@ class MvcController{
 	#-------------------------------------
 
 	public function pagina(){	
-		
+		//llama al archivo template.php
 		include "views/template.php";
 	
 	}
@@ -36,22 +36,22 @@ class MvcController{
 	#------------------------------------
 	public function ingresoUsuarioController(){
 		
-
+        //comprueba se hayan ingresado los datos del usuario
 		if(isset($_POST["usuarioIngreso"])){
 			
-
+           //almacena lod datos ingresados en un array y los envia models/crud.php para realizar la sentencia sql a la base de datos
 			$datosController = array( "nombre"=>$_POST["usuarioIngreso"], 
 								      "password"=>$_POST["passwordIngreso"]);
-									  echo"/**************-*****";
+			
 			$respuesta = Datos::ingresoUsuarioModel($datosController, "usuarios");
 			
-
+            //comprueba que los datos ingresados coincidan con los existentes en la base de datos
 			if($respuesta["nombre"] == $_POST["usuarioIngreso"] && $respuesta["password"] == $_POST["passwordIngreso"]){
 
 				session_start();
 
 				$_SESSION["validar"] = true;
-
+                //valida el tipo de usuario para darle los privilegios de administrador o usuario normal
 				$us= $respuesta["tipo_usuario"];
 				if($us==2){
 					header("location:index.php?action=clientes&idus=2");
@@ -62,8 +62,8 @@ class MvcController{
 			}
 
 			else{
-				echo "sin conexion";
-
+				
+                //si la conexion no se realiza dirrecciona la action=fallo
 				header("location:index.php?action=fallo");
 
 			}
@@ -74,16 +74,16 @@ class MvcController{
 	#REGISTRO DE USUARIOS
 	#------------------------------------
 	public function registroUsuarioController(){
-
+       //comprueba se hayan ingresado los datos del usuario
 		if(isset($_POST["usuarioRegistro"])){
-
+         //almacena los datos ingresados en un array y los envia models/crud.php para realizar la sentencia sql a la base de datos
 			$datosController = array( "tipo_usuario"=>$_POST["emailRegistro"],
 			                           "nombre"=>$_POST["usuarioRegistro"], 
 								      "password"=>$_POST["passwordRegistro"],
 								      );
 
 			$respuesta = Datos::registroUsuarioModel($datosController, "usuarios");
-
+            //comprueba que los datos ingresados fueran almacenados de forma exitosa
 			if($respuesta == "success"){
 
 				header("location:index.php?action=ok");
@@ -105,7 +105,7 @@ class MvcController{
 
 		$respuesta = Datos::vistas("clientes");
 		#El constructor foreach proporciona un modo sencillo de iterar sobre arrays. foreach funciona sólo sobre arrays y objetos, y emitirá un error al intentar usarlo con una variable de un tipo diferente de datos o una variable no inicializada.
-        
+        //foreach iterra sobre el array de datos de la tabla clientes de la BD
 		foreach($respuesta as $row => $item){
 		echo'<tr>
 		        <td>'.$item["id"].'</td>
@@ -129,11 +129,11 @@ class MvcController{
 	public function borrarClientesController(){
 
 		if(isset($_GET["idBorrar"])){
-
+            //se borra el registro segun el id obtenido con la funcion GET
 			$datosController = $_GET["idBorrar"];
 			
 			$respuesta = Datos::borrar($datosController, "clientes");
-			echo $respuesta;
+			
 			
 			if($respuesta == "success"){
 
@@ -150,16 +150,16 @@ class MvcController{
 	#REGISTRO DE CLIENTES
 	#------------------------------------
 	public function registroClientesController(){
-
+      //comprueba se hayan ingresado los datos del cliente
 		if(isset($_POST["Nombre"])){
-
+         //almacena los datos ingresados en un array y los envia models/crud.php para realizar la sentencia sql a la base de datos
 			$datosController = array( "nombre"=>$_POST["Nombre"], 
 									  "apellido"=>$_POST["Apellido"],
 									  "tipo"=>$_POST["Tipo"],
 								     );
 
 			$respuesta = Datos::registroClientesModel($datosController, "clientes");
-
+           //comprueba que los datos ingresados fueran almacenados de forma exitosa
 			if($respuesta == "success"){
 				if($_GET["idus"]==1){
 
@@ -184,7 +184,7 @@ class MvcController{
 	#------------------------------------
 
 	public function editarClientesController(){
-
+        //se consulta el registro segun el id obtenido con la funcion GET
 		$datosController = $_GET["idEd"];
 		$respuesta = Datos::editar($datosController, "clientes");
 
@@ -203,7 +203,7 @@ class MvcController{
 	#ACTUALIZAR CLIENTE
 	#------------------------------------
 	public function actualizarClientesController(){
-
+      //comprueba se hayan ingresado los datos del cliente
 		if(isset($_POST["idEditar"])){
 
 			$datosController = array( "id"=>$_POST["idEditar"],
@@ -212,7 +212,7 @@ class MvcController{
 				                      "tipo"=>$_POST["tipoEditar"]);
 			
 			$respuesta = Datos::actualizarClientesModel($datosController, "clientes");
-
+           //comprueba que los datos ingresados fueran almacenados de forma exitosa
 			if($respuesta == "success"){
 
 				header("location:index.php?action=clientes&idus=1");
@@ -236,7 +236,7 @@ class MvcController{
 
 		$respuesta = Datos::vistas("habitaciones");
 		#El constructor foreach proporciona un modo sencillo de iterar sobre arrays. foreach funciona sólo sobre arrays y objetos, y emitirá un error al intentar usarlo con una variable de un tipo diferente de datos o una variable no inicializada.
-        
+        //foreach iterra sobre el array de datos de la tabla clientes de la BD
 		foreach($respuesta as $row => $item){
 		echo'<tr>
 		        <td>'.$item["id"].'</td>
@@ -421,14 +421,14 @@ class MvcController{
 		
 	}
 
-	#VISTA DE HABITACIONES
+	#VISTA DE RESERVACIONES
 	#------------------------------------
 
 	public function vistaReservasController(){
 
 		$respuesta = Datos::vistas("reservas");
 		#El constructor foreach proporciona un modo sencillo de iterar sobre arrays. foreach funciona sólo sobre arrays y objetos, y emitirá un error al intentar usarlo con una variable de un tipo diferente de datos o una variable no inicializada.
-        
+    
 		foreach($respuesta as $row => $item){
 		echo'<tr>
 		        <td>'.$item["id"].'</td>
@@ -437,6 +437,7 @@ class MvcController{
 				<td>'.$item["fecha_entrada"].'</td>
 				<td>'.$item["dias_reserva"].'</td>
 				<td>'.$item["pago_total"].'</td><td>';
+
 				if($_GET["idus"]==1){
 				echo '
 				<a href="index.php?action=editarR&idus=1&idEdR='.$item["id"].'">
@@ -455,7 +456,7 @@ class MvcController{
 
 	}
 
-	#BORRAR HABITACIONES
+	#BORRAR RESERVACIONES
 	#------------------------------------
 	public function borrarReservasController(){
 
@@ -548,7 +549,7 @@ class MvcController{
 	}
 
 
-	#EDITAR HABITACION
+	#EDITAR RESERVACIONES
 	#------------------------------------
 	
 	public function editarReservaController(){
@@ -614,9 +615,9 @@ class MvcController{
 		$mesF=$_POST["mes"].'-31';
 		$pago_total=0;
 				
-		$res = Datos::consultarG($mesI,$mesF,"reservas");
+		$res = Datos::consultarG($mesI,$mesF,"reservas");//utiliza  consultarG de models/crud.php para ejecutar la sentencia sql que trae os registros de reservaciones echas en un mes dado
 		foreach($res as $row => $item){
-			$pago_total=$pago_total+$item["pago_total"];
+			$pago_total=$pago_total+$item["pago_total"];//suma el pago de todas las reservas realizadas en el mes
 		
 		}
 		echo "Ganancia total del mes: ";
@@ -647,7 +648,7 @@ class MvcController{
 
 	}
 
-	#ver HABITACION
+	#ver RESERVA SEGUN EL ID
 	#------------------------------------
 
 	public function verReservaController(){

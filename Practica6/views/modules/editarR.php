@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+//valida el acceso del usuario
 if(!$_SESSION["validar"]){
 
 	header("location:index.php?action=ingresar");
@@ -20,9 +20,9 @@ if(!$_SESSION["validar"]){
 	$us=0;
 	$us=$_GET["idus"];
 	if($us==1){
-		$editarUsuario = new MvcController();
-		$editarUsuario -> editarReservaController();
-		$editarUsuario -> actualizarReservaController();
+		$editarReservas = new MvcController();
+		$editarReservas -> editarReservaController();//utiliza la el metodo de la clase MvcController de controller/controller.php
+		$editarReservas -> actualizarReservaController();
 
 	}
 

@@ -8,6 +8,7 @@ class Datos extends Conexion{
     #INGRESO USUARIO
 	#-------------------------------------
 	public function ingresoUsuarioModel($datosModel, $tabla){
+		
 
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE nombre = :nombre");	
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
@@ -49,7 +50,7 @@ class Datos extends Conexion{
 
 	}
 	
-	#VISTAS
+	#VISTAS trae todos los datos de la tabla de la base de datos, recibiendo como parametros el nombre de la tabla
 	#-------------------------------------
 
 	public function vistas($tabla){
@@ -64,7 +65,7 @@ class Datos extends Conexion{
 
 	}
 
-	#BORRAR REGISTRO
+	#BORRAR REGISTRO: bora el registro que coincida con el id ($datosModel)
 	#------------------------------------
 	public function borrar($datosModel, $tabla){
 
@@ -116,9 +117,9 @@ class Datos extends Conexion{
 
 	}
 
-	#EDITAR REGISTRO
+	#EDITAR REGISTRO: selecciona el registro que coincida con el id proporcionado
 	#-------------------------------------
-
+    
 	public function editar($datosModel, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
@@ -131,7 +132,7 @@ class Datos extends Conexion{
 
 	}
 
-	#ACTUALIZAR CLIENTES
+	#ACTUALIZAR CLIENTES: actualiza el registro que coincida con el id de la tabla recibida
 	#-------------------------------------
 
 	public function actualizarClientesModel($datosModel, $tabla){
@@ -158,7 +159,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
-		#REGISTRO DE HABITACIONES
+	#REGISTRO DE HABITACIONES: inserta un nuevo registro en la tabla habitaciones, recibe un array con los datos llenados en el formulario y el nombre de la tabla
 	#-------------------------------------
 	public function registroHabitacionesModel($datosModel, $tabla){
 
@@ -189,7 +190,7 @@ class Datos extends Conexion{
 	}
 
 
-	#ACTUALIZAR HABITACION
+	#ACTUALIZAR HABITACION:  actualiza el registro que coincida con el id de la tabla recibida
 	#-------------------------------------
 
 	public function actualizarHabitacionesModel($datosModel, $tabla){
@@ -217,7 +218,8 @@ class Datos extends Conexion{
 	}
 
 
-	#REGISTRO DE resevciones
+	#REGISTRO DE resevciones: inserta un nuevo registro en la tabla reservas, recibe un array con los datos llenados en el formulario y el nombre de la tabla
+	
 	#-------------------------------------
 	public function registroReservasModel($datosModel, $tabla){
 
@@ -250,7 +252,7 @@ class Datos extends Conexion{
 
 	}
 
-	#ACTUALIZAR RESERVACION
+	#ACTUALIZAR RESERVACION:  actualiza el registro que coincida con el id de la tabla recibida
 	#-------------------------------------
 
 	public function actualizarReservacionModel($datosModel, $tabla){
@@ -280,7 +282,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
-
+    //Realiza una consulta a la tabla reservas, pidiendo todos los registros echos que contengan el mes seleccionado
 	public function consultarG($d1,$d2, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE  `fecha_entrada` BETWEEN '$d1' AND '$d2'");

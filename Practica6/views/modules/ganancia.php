@@ -11,8 +11,9 @@
 
 <?php
 
-$regProducto = new MvcController();
-$regProducto -> GananciasController();
+$gan = new MvcController();
+$gan -> GananciasController();//utiliza la el metodo de la clase MvcController de controller/controller.php
+
 
 if(isset($_GET["action"])){
 

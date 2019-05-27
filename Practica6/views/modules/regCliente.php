@@ -14,8 +14,9 @@
 
 <?php
 
-$regProducto = new MvcController();
-$regProducto -> registroClientesController();
+$regCliente = new MvcController();
+$regCliente-> registroClientesController();//utiliza la el metodo de la clase MvcController de controller/controller.php
+
 
 if(isset($_GET["action"])){
 

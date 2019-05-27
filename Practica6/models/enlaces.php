@@ -4,13 +4,14 @@ class Paginas{
 	
 	public function enlacesPaginasModel($enlaces){
 		$us=$_GET["idus"];
+		//$enlaces es recibido como parametro y este indica la pagina para acceder
 
 		if($enlaces == "ingresar"){
 	
 			$module =  "views/modules/ingresar.php";
 		
 		}
-
+         //da acceso a todas las paginas del sitio al usuario Administrador get[idus] trae el tipo de usuario que ingreso
 		if($us==1){
 			if($enlaces == "reservas" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion" 
 			||$enlaces == "regCliente" ||$enlaces == "editarH" ||$enlaces == "ingresar" 
@@ -40,7 +41,8 @@ class Paginas{
 
 		}
 
-
+		//da acceso a ciertas paginas del sitio al usuario normal
+		
 		}else if($us==2){
 			if($enlaces == "reservas" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion"||$enlaces == "regCliente" ||$enlaces == "clientes"
 			 ||$enlaces == "ingresar" ||$enlaces == "registro"  ||$enlaces == "verHabitacion" 
@@ -76,7 +78,7 @@ class Paginas{
 	
 			else{
 	
-				$module =  "views/modules/ingresar.php";
+				$module =  "views/modules/ingresar.php"; //si la pagina no es encontrada se abre ingresar.php
 	
 			}
 			
