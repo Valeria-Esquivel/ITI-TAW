@@ -14,11 +14,8 @@ class Paginas{
 		else if($enlaces == "materia_grupo"){
 			$module =  "views/modules/agregarMatGrupos.php";
 		}
-		else if($enlaces == "alumnos"){
-			$module =  "views/modules/alumnos.php";
-		}
 		else if($enlaces == "index"){
-			$module =  "views/modules/inicio.php";
+			$module =  "views/modules/alumnos.php";
 		}
 		
 		

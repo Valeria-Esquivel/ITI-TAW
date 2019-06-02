@@ -44,13 +44,13 @@ class MvcController{
 					<li><a href="index.php?action=alumnos">Alumnos</a></li>
 					<li><a href="index.php?action=carreras">Carreras</a></li>
 					<li><a href="index.php?action=reportes">Reportes</a></li>
-					<li><a href="index.php?action=salir">Salir</a></li>';
+					<li><a href="http://localhost:9090/TAW/Practica7/index.php?action=inicio">Salir</a></li>';
 			else
 				echo'
 					<li><a href="index.php?action=ingresar">Ingreso</a></li>
 					<li><a href="index.php?action=tutorias">Tutorias</a></li>
 					<li><a href="index.php?action=reportes">Reportes</a></li>
-					<li><a href="index.php?action=salir">Salir</a></li>';
+					<li><a href="http://localhost:9090/TAW/Practica7/index.php?action=inicio">Salir</a></li>';
 		}
 
 	}
