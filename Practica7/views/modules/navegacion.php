@@ -1,11 +1,13 @@
 <nav>
-	<ul>
+<ul class="nav justify-content-center">
 		
-		<li><a href="index.php?action=alumnos">Alumnos</a></li>
-		<li><a href="index.php?action=maestros">Maestros</a></li>
-		<li><a href="index.php?action=productos">Productos</a></li>
-		<li><a href="index.php?action=ventas">Ventas</a></li>
-		<li><a href="index.php?action=calcular">Consultar</a></li>
-		<li><a href="index.php?action=salir">Salir</a></li>
+		<li class="nav-item"><a class="nav-link" href="index.php?action=alumnos">Alumnos</a></li>
+		<li class="nav-item"><a class="nav-link" href="index.php?action=maestros">Maestros</a></li>
+		<li class="nav-item"><a class="nav-link" href="index.php?action=materias">Materias</a></li>
+		<li class="nav-item"><a class="nav-link" href="index.php?action=grupos">Grupos</a></li>
+		<li class="nav-item"><a class="nav-link" href="index.php?action=salir">Salir</a></li>
+
+
+		
 	</ul>
 </nav>

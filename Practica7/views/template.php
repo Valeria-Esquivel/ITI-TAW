@@ -33,7 +33,7 @@ $(document).ready(function() {
 			margin:auto;
 			width:100%;
 			height:auto;
-			background:black;
+			background:#48C9B0 ;
 		}
 
 		nav ul{
@@ -51,9 +51,12 @@ $(document).ready(function() {
 		}
 
 		nav ul li a{
-			color:white;
+			color:#D0ECE7  ;
 			text-decoration: none;
 			
+		}
+		button{
+			color:#D0ECE7;
 		}
 
 		section{

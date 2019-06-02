@@ -2,8 +2,6 @@
 
 session_start();
 
-
-
 ?>
 <body class="wide comments example dt-example-bootstrap4">
 <div class= "container">
@@ -26,8 +24,6 @@ session_start();
 <br/>
 <br/>
 <br/>
-
-    
 	<table id="example" class="table table-striped table-bordered" style="width:100%">
 		
 		<thead>
@@ -58,15 +54,5 @@ session_start();
 	</div> 
 
 <?php
-
-if(isset($_GET["action"])){
-
-	if($_GET["action"] == "cambio"){
-
-		echo "Cambio Exitoso";
-	
-	}
-
-}
 
 ?>

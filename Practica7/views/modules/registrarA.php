@@ -8,7 +8,7 @@
 	<input type="text" placeholder="Carrera" name="carrera" required>
 	<input type="text" placeholder="Email" name="email" required>
 
-	<input type="submit" value="Enviar">
+	<input type="submit"  class="btn btn-secondary"value="Enviar">
 
 </form>
 

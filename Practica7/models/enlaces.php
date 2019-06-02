@@ -5,7 +5,18 @@ class Paginas{
 	public function enlacesPaginasModel($enlaces){
 
 		$module =  "views/modules/".$enlaces.".php";
-		
+		 if($enlaces == "ok_alumno"){
+			$module =  "views/modules/alumnos.php";
+		}
+		else if($enlaces == "materia_alumno"){
+			$module =  "views/modules/agregarMatAlumnos.php";
+		}
+		else if($enlaces == "materia_grupo"){
+			$module =  "views/modules/agregarMatGrupos.php";
+		}
+		else if($enlaces == "alumnos"){
+			$module =  "views/modules/alumnos.php";
+		}
 		
 		
 		/*if($enlaces == "reservas" ||$enlaces == "habitaciones" ||$enlaces == "regHabitacion" 
@@ -18,28 +29,7 @@ class Paginas{
 			
 			}
 			
-		else if($enlaces == "fallo"){
-
-			$module =  "views/modules/ingresar.php";
-		
-		}
-
-		else if($enlaces == "cambio"){
-
-			$module =  "views/modules/usuarios.php";
-		
-		}
-
-		else{
-
-			$module =  "views/modules/ingresar.php";
-
-		}
-
-		//da acceso a ciertas paginas del sitio al usuario normal
-		
-		
-*/
+	*/
 		
 		return $module;
 	}
