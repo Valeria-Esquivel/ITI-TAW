@@ -11,8 +11,9 @@ session_start();
 <form method="post">
 	
 	<?php
-	
-		$editarC = new MvcController();//utiliza la el metodo de la clase MvcController de controller/controller.php
+	//utiliza la el metodo de la clase MvcController de controller/controller.php
+		$editarC = new MvcController();
+		
 		$editarC -> editarMaestrosController();
 		$editarC -> actualizarMaestrosController();
 
