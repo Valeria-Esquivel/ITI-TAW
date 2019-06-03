@@ -26,7 +26,7 @@ session_start();
            
           
           
-            <a href="http://localhost:9090/TAW/tutorias/index.php/index.php?action=ingresar" class="btn btn-info">
+            <a href="index.php?action=ingresar" class="btn btn-info">
      
              
                 </i>Tutorias</a>

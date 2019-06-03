@@ -104,7 +104,7 @@ class MvcController{
 		}
 
 	}
-	//VISTA DE MATERIAS
+	//VISTA DE GRUPOS
 	#------------------------------------
 
 	public function vistaGruposController(){
@@ -238,7 +238,7 @@ class MvcController{
 			 <input type="submit" class="btn btn-secondary" value="Actualizar">';
 
 	}
-	#EDITAR MATERIAS
+	#EDITAR MAESTROS
 	#------------------------------------
 
 	public function editarMaestrosController(){
@@ -284,7 +284,7 @@ class MvcController{
 			 ';
 
 	}
-	#EDITAR MATERIAS
+	#EDITAR GRUPOS
 	#------------------------------------
 
 	public function editarGruposController(){
@@ -392,7 +392,7 @@ class MvcController{
 	
 	}
 
-	#ACTUALIZAR MAESTROS
+	#ACTUALIZAR MATERIAS
 	#------------------------------------
 	public function actualizarMateriaController(){
 		//comprueba se hayan ingresado los datos del cliente
@@ -474,7 +474,7 @@ class MvcController{
 
 	
 	}
-		#BORRAR MATERIAS
+	#BORRAR MATERIAS
 	#------------------------------------
 	public function borrarMateriasController(){
 
@@ -529,6 +529,8 @@ class MvcController{
 
 	
 	}
+	#formulario base para registrar materias
+	#------------------------------------
 	public function registroBaseMateriasController(){
 		$res = Datos::vistas("maestros");
 		$res2 = Datos::vistas("alumnos");
@@ -548,6 +550,8 @@ class MvcController{
 					';
 					}
 			#Guardar reservaciones
+	
+	#REGISTRO DE MATERIAS
 	#------------------------------------
 	public function registroMateriaController(){
 		$cod=$_POST["codigoMat"];
@@ -557,7 +561,7 @@ class MvcController{
 									  "id_maestro"=>$_POST["id_maestro"],
 									  
 									  );
-			var_dump($datosController);
+			
 			$respuesta = Datos::registroMateriasModel($datosController, "materias");
 			foreach($respuesta2 as $row => $item){
 				if($item["codigo"]==$cod){
@@ -576,7 +580,7 @@ class MvcController{
 
 		}
 	}
-
+    #AGREGA ALUMNOS A LAS MATERIA
 	#------------------------------------
 	public function agregarAlumnoMatController(){
 		 
@@ -600,6 +604,7 @@ class MvcController{
 									  );
 		    $v=0;
 			foreach($respuesta2 as $row => $item){
+				//if si el alumno que se espera agregar ya esta inscrito 
 		    if($item["id_alumno"]==$_POST["id_alumnos"]){
 			$v=1;
 			}
@@ -608,7 +613,7 @@ class MvcController{
 			if($v==0){
 				$respuesta = Datos::registroMatAlumnos($datosController, "al-mat");
 			}else{
-				
+				//alerta para alumnos que ya estan registrados
 				echo '<div class="alert alert-danger" role="alert">
 				Este alumno ya esta inscrito en la materia
                 </div>';
@@ -616,6 +621,7 @@ class MvcController{
 		}
 		   $respuesta2 = Datos::aM("al-mat",$id_mat);
 		   if($respuesta2!=NULL){
+			   //tabla de vista de los alumnos inscritos en la materia
 			 echo '<table class="table table-striped">
 			 <tr>
 			 <th>Id</th>
@@ -641,6 +647,8 @@ class MvcController{
 		 }	 
 	
 	}
+	#BORRAR ALUMNOS A LAS MATERIA
+	#------------------------------------
 	public function borrarAlumnosMatController(){
 		if(isset($_GET["idAL"])){
 			//se borra el registro segun el id obtenido con la funcion GET
@@ -657,7 +665,7 @@ class MvcController{
        }
 	}
 	
-
+	  #AGREGA MATERIAS A GRUPOS
 	#------------------------------------
 	public function agregarMateriasGruposController(){
 		 
@@ -681,6 +689,7 @@ class MvcController{
 										 );
 			   $v=0;
 			   foreach($respuesta2 as $row => $item){
+			   //if si la materia que se espera agregar ya existe en el grupo
 			   if($item["id_materia"]==$_POST["id_materia"]){
 			   $v=1;
 			   }
@@ -689,13 +698,14 @@ class MvcController{
 			   if($v==0){
 				   $respuesta = Datos::registroMatGrupos($datosController, "mat_grup");
 			   }else{
-				   
+				   //alerta para materias que ya estan registradas
 				   echo '<div class="alert alert-danger" role="alert">
 				  La materia ya pertenece al grupo
 				   </div>';
 			   }
 		   }
 			  $respuesta2 = Datos::mG("mat_grup",$id_mat);
+			  //tabla de vista de las materias del grupo
 			  if($respuesta2!=NULL){
 				echo '<table class="table table-striped">
 				<tr>
@@ -722,7 +732,8 @@ class MvcController{
 			}	 
 	   
 	   }
-
+    #BORRAR MATERIAS DE GRUPO
+	#------------------------------------
 	public function borrarMateriasGrupController(){
 		if(isset($_GET["idMat"])){
 			//se borra el registro segun el id obtenido con la funcion GET

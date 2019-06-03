@@ -17,11 +17,23 @@
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 	<script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
 	<script type="text/javascript" class="init">
-
-
-$(document).ready(function() {
+    
+	$(document).ready(function() {
 	$('#example').DataTable();
 } );
+	<link rel="stylesheet" href="./views/css/foundation.css" />
+	<link href="./views/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="./views/css/datatables.min.css"/>
+
+	
+	
+	<script src="./views/js/vendor/jquery.js"></script>
+    <script src="./views/js/vendor/modernizr.js"></script>
+	<script src="./views/js/select2.min.js"></script>
+	<script type="text/javascript" src="./views/js/datatables/datatables.min.js"></script>
+
+
+
 </script>
 
 	<title>Template</title>
@@ -55,9 +67,7 @@ $(document).ready(function() {
 			text-decoration: none;
 			
 		}
-		button{
-			color:#D0ECE7;
-		}
+		
 
 		section{
 			position: relative;
@@ -111,7 +121,7 @@ $(document).ready(function() {
 </head>
 
 
-
+<body>
 
 <?php include "modules/navegacion.php"; ?>
 
@@ -128,6 +138,11 @@ $mvc -> enlacesPaginasController();
 </section>
 
 </body>
+<script> 
+	$(document).ready( function () {
+	    $('#table').DataTable();
+	} );		
+</script>
 
 </html>
 

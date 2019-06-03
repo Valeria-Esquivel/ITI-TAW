@@ -327,7 +327,7 @@ class Datos extends Conexion{
 
 		$stmt->close();
 
-	}
+	} 
 	
 	#VISTA DE LAS TUTORIAS POR NIVEL 
 	#-------------------------------------

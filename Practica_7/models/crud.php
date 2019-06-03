@@ -20,7 +20,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
-	#VISTAS trae todos los datos de la tabla de la base de datos, recibiendo como parametros el nombre de la tabla
+	#aM trae todos los datos de la tabla de la base de datos, recibiendo como parametros el nombre de la tabla
 	#-------------------------------------
 
 	public function aM($tabla, $id){
@@ -35,7 +35,8 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
-
+    #mG trae todos los datos de la tabla de la base de datos, recibiendo como parametros el nombre de la tabla
+	
 	#-------------------------------------
 
 	public function mG($tabla, $id){
@@ -51,7 +52,7 @@ class Datos extends Conexion{
 
 	}
 
-	#REGISTRO DE USUARIOS
+	#REGISTRO DE ALUMNOS
 	#-------------------------------------
 	public function registroAlumnosModel($datosModel, $tabla){
 
@@ -115,7 +116,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
-		#REGISTRO DE MAESTROS
+		#REGISTRO DE MATERIAS
 	#-------------------------------------
 	public function registroMateriasModel($datosModel, $tabla){
 
@@ -199,7 +200,7 @@ class Datos extends Conexion{
 	$stmt->close();
 
 }
-    #REGISTRO DE USUARIOS
+    #REGISTRO DE GRUPOS
 	#-------------------------------------
 	public function registroGruposModel($datosModel, $tabla){
 
@@ -261,6 +262,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
+	#BORRA AL ALUMNO DE LA MATERIA 
 	public function borrarAlMat($datosModel, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM `$tabla` WHERE id_materia = :id_materia and id_alumno= :id_alumno");
@@ -283,6 +285,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
+		#BORRA LA MATERIA DEL GRUPO
 	public function borrarMatGrup($datosModel, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("DELETE FROM `$tabla` WHERE id_materia = :id_materia and id_grupo= :id_grupo");
@@ -305,7 +308,7 @@ class Datos extends Conexion{
 		$stmt->close();
 
 	}
-
+   #ACTUALIZA LOS CAMPOS DE LAS TABLAS CUANDO COINCIDEN CON EL ID
 	public function actualizarAlumnosModel($datosModel, $tabla){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET matricula=:matricula, nombre = :nombre, apellido = :apellido, carrera=:carrera, email=:email WHERE id = :id");
