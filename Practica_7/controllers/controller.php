@@ -226,7 +226,7 @@ class MvcController{
 		$respuesta = Datos::editar($datosController, "alumnos");
 
 		echo'<input type="hidden" value="'.$respuesta["id"].'" name="idEditarA">
-		 <input type="text" value="'.$respuesta["matricula"].'" name="AmatriculaEditar" required>
+		    <input type="text" value="'.$respuesta["matricula"].'" name="AmatriculaEditar" required>
 
 			 <input type="text" value="'.$respuesta["nombre"].'" name="AnombreEditar" required>
 
