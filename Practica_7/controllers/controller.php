@@ -221,20 +221,14 @@ class MvcController{
 	#------------------------------------
 
 	public function editarAlumnosController(){
-        //se consulta el registro segun el id obtenido con la funcion GET
-		$datosController = $_GET["idEd"];
+       		$datosController = $_GET["idEd"];
 		$respuesta = Datos::editar($datosController, "alumnos");
-
 		echo'<input type="hidden" value="'.$respuesta["id"].'" name="idEditarA">
-		    <input type="text" value="'.$respuesta["matricula"].'" name="AmatriculaEditar" required>
-
-			 <input type="text" value="'.$respuesta["nombre"].'" name="AnombreEditar" required>
-
-			 <input type="text" value="'.$respuesta["apellido"].'" name="AapellidoEditar" required>
-
+		     <input type="text" value="'.$respuesta["matricula"].'" name="AmatriculaEditar" required>
+                     <input type="text" value="'.$respuesta["nombre"].'" name="AnombreEditar" required>
+		     <input type="text" value="'.$respuesta["apellido"].'" name="AapellidoEditar" required>
 			 <input type="text" value="'.$respuesta["carrera"].'" name="AcarreraEditar" required>
 			 <input type="text" value="'.$respuesta["email"].'" name="AemailEditar" required>
-
 			 <input type="submit" class="btn btn-secondary" value="Actualizar">';
 
 	}
