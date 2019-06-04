@@ -1,17 +1,25 @@
-<? php
-session_start ();
-? >
+<?php
 
-< h1 > EDITAR MAESTRO </ h1 >
+session_start();
 
-< form  method = " post " >
+
+
+?>
+
+<h1>EDITAR MAESTRO</h1>
+
+<form method="post">
 	
-	<? php
-	// utiliza el metodo de la clase MvcController de controller / controller.php
-		$ editarC  =  new  MvcController ();
+	<?php
+	//utiliza la el metodo de la clase MvcController de controller/controller.php
+		$editarC = new MvcController();
 		
-		$ editarC  -> editarMaestrosController ();
-		$ editarC  -> actualizarMaestrosController ();
-	? >
+		$editarC -> editarMaestrosController();
+		$editarC -> actualizarMaestrosController();
 
-</ form > 
+
+
+
+	?>
+
+</form>
