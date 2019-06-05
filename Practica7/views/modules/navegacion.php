@@ -9,7 +9,7 @@
 		$in=="grupos" ||$in=="maestros" ||$in=="registrarA"||$in=="registrarG"||$in=="registrarM"||$in=="registrarMat"
 		||$in=="editarA"||$in=="editarM"||$in=="editarMat"||$in=="editarG"||$in=="agregarMatGrupos"||$in=="agregarMatAlumnos"){$r=2;}
 
-		if($in=="ingresar" ||$in=="alumnos2" ||$in=="carreras" ||$in=="editar_alumnos" ||$in=="editar_carreras" ||$in=="editar_maestro" ||$in=="tutoria"
+		if($in=="alumnos2" ||$in=="carreras" ||$in=="editar_alumnos" ||$in=="editar_carreras" ||$in=="editar_maestro" ||$in=="tutorias"
 		||$in=="ingresar" ||$in=="maestros2" ||$in=="registro_alumno" ||$in=="registro_carrera" ||$in=="registro_maestro" ||$in=="registro_tutoria"
 		||$in=="reportes"){$r=1;}
 		error_reporting(0);
