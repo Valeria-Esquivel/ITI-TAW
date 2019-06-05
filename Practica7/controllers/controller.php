@@ -748,8 +748,7 @@ class MvcController{
 	#(maestro/superusuario) donde en el caso de superusuario se muestran las opciones completamente.
 	public function vistaNavegacionController(){
 
-		if(isset($_COOKIE['nivel'])){
-			if($_COOKIE['nivel']=="1")
+		
 				echo'
 					<li><a href="index.php?action=ingresar">Ingreso</a></li>
 					<li><a href="index.php?action=tutorias">Tutorias</a></li>
@@ -758,13 +757,7 @@ class MvcController{
 					<li><a href="index.php?action=carreras">Carreras</a></li>
 					<li><a href="index.php?action=reportes">Reportes</a></li>
 					<li><a href="index.php?action=inicio">Salir</a></li>';
-			else
-				echo'
-					<li><a href="index.php?action=ingresar">Ingreso</a></li>
-					<li><a href="index.php?action=tutorias">Tutorias</a></li>
-					<li><a href="index.php?action=reportes">Reportes</a></li>
-					<li><a href="index.php?action=inicio">Salir</a></li>';
-		}
+		
 
 	}
 
