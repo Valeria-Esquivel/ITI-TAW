@@ -2,79 +2,49 @@
 
 session_start();
 
-
-
+/*if(!$_SESSION["validar"] || !isset($_COOKIE['nivel']) || $_COOKIE['nivel']!="1"){
+	header("location:index.php?action=ingresar");
+	exit();
+}*/
 ?>
-<body class="wide comments example dt-example-bootstrap4">
-<div class= "container">
-       <div class = "table-wrapper">
-            <div class= "table-title">
-                <div class ="row">
-                      <div class="col-sm-8"><h2>Maestros</b></h2></div>
-                      <div class="col-sm-4">
-					 
-					 
-				       <a href="index.php?action=registrarM" class="btn btn-info add-new">
-				
-				        
-                           </i>Nuevo Registro</a> 
-                      </div>
-                </div>
-            </div>
-			<div class="row">
 
-<br/>
-<br/>
-<br/>
-
-    
-	<table id="example" class="table table-striped table-bordered" style="width:100%">
-		
+<h1>MAESTROS</h1>
+<td><a href="index.php?action=registro_maestro"><button class="success">Agregar Nuevo Maestro</button></a></td>
+	<table id="table" border="0">
 		<thead>
 			<tr>
-				<th>Numero Empleado</th>
+				<th>Num. Empleado</th>
 				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>Carrera</th>
 				<th>Email</th>
-				<th></th>
-				
-
+				<th>Carrera</th>
+				<th>Nivel</th>
+				<th>¿Editar?</th>
+				<th>¿Eliminar?</th>
 			</tr>
-
 		</thead>
-
 		<tbody>
-			
 			<?php
 
-			$vistaAlumnos = new MvcController();
-			$vistaAlumnos -> vistaMaestrosController();
-			$vistaAlumnos -> borrarMaestrosController();
+			$vistaMaestro = new MvcController();
+			$vistaMaestro -> vistaMaestrosController2();
+			$vistaMaestro -> borrarMaestroController();
 
 			?>
 
 		</tbody>
-
-	
-		</tbody>
-
 	</table>
-	</div> 
-
 <?php
 
 if(isset($_GET["action"])){
-
 	if($_GET["action"] == "cambio"){
-
 		echo "Cambio Exitoso";
-	
 	}
-
 }
 
 ?>
+
+
+
 
 
 

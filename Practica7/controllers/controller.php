@@ -822,18 +822,19 @@ class MvcController{
 	#Interfaz de los maestros, imprime los componentes de la misma
 	public function vistaMaestrosController2(){
 
-		$respuesta = Datos::vistaMaestrosModel("maestros");
+		$respuesta = Datos::vistas("maestros");
+		
 
 		foreach($respuesta as $row => $item){
 			$item["nivel"]=$item["nivel"]==1?"SuperAdmin":"Maestro";
 		echo'<tr>
-				<td>'.$item["num_empleado"].'</td>
+				<td>'.$item["no.empleado"].'</td>
 				<td>'.$item["nombre"].'</td>
 				<td>'.$item["email"].'</td>
-				<td>'.$item["nombre_carrera"].'</td>
+				<td>'.$item["carrera"].'</td>
 				<td>'.$item["nivel"].'</td>
-				<td><a href="index.php?action=editar_maestro&num_empleado='.$item["num_empleado"].'"><button class="small warning">Editar</button></a></td>
-				<td><a href="index.php?action=maestros&idBorrar='.$item["num_empleado"].'"><button onclick="wait();" class="small alert">Borrar</button></a></td>
+				<td><a href="index.php?action=editar_maestro&num_empleado='.$item["id"].'"><button class="small warning">Editar</button></a></td>
+				<td><a href="index.php?action=maestros&idBorrar='.$item["id"].'"><button onclick="wait();" class="small alert">Borrar</button></a></td>
 			</tr>';
 		echo ' 
 			<script type="text/javascript">
@@ -853,14 +854,15 @@ class MvcController{
 	public function editarMaestroController(){
 
 		$datosController = $_GET["num_empleado"];
-		$respuesta = Datos::editarMaestroModel($datosController, "maestros");
+		$respuesta = Datos::editar($datosController, "maestros");
 		$respuesta_select = Datos::obtenerCarrerasModel("carrera");
+		echo $datosController;
 
 		$st_carreras="";
 		for($i=0;$i<sizeof($respuesta_select);$i++)
 			$st_carreras=$st_carreras."<option value='".$respuesta_select[$i]['id']."'>".$respuesta_select[$i]['nombre']."</option>";
 		
-		echo'<input type="hidden" value="'.$respuesta["num_empleado"].'" name="num_empleado">
+		echo'<input type="hidden" value="'.$respuesta["no.empleado"].'" name="num_empleado">
 			 <label for="nombre">Nombre:</label>
 			 <input type="text" value="'.$respuesta["nombre"].'" name="nombre" required>
 			 <label for="email">Email:</label>
@@ -899,7 +901,7 @@ class MvcController{
 				                      "email"=>$_POST["email"],
 				                      "password"=>$_POST["password"],
 				                      "carrera"=>$_POST["carrera"]);
-
+           var_dump($datosController);
 			$respuesta = Datos::actualizarMaestroModel($datosController, "maestros");
 
 			if($respuesta == "success"){
@@ -1002,14 +1004,16 @@ class MvcController{
 	#Se encarga de controlar la vista de la interfaz de alumnos
 	public function vistaAlumnosController2(){
 
-		$respuesta = Datos::vistaAlumnoModel("alumnos");
+		$respuesta = Datos::vistas("alumnos");
+		
 
 		foreach($respuesta as $row => $item){
+			$respuesta2 = Datos::editar($item["id_tutor"],"maestros");
 		echo'<tr>
 				<td>'.$item["matricula"].'</td>
 				<td>'.$item["nombre"].'</td>
 				<td>'.$item["carrera"].'</td>
-				<td>'.$item["tutor"].'</td>
+				<td>'.$respuesta2["nombre"].'</td>
 				<td><a href="index.php?action=editar_alumnos&matricula='.$item["matricula"].'"><button class="small warning">Editar</button></a></td>
 				<td><a href="index.php?action=alumnos&idBorrar='.$item["matricula"].'"><button class="small alert">Borrar</button></a></td>
 			</tr>';
@@ -1599,7 +1603,7 @@ class MvcController{
 	#Genera la tabla de los reportes de maestros
 	public function vistaReporteMaestrosController(){
 
-		$respuesta = Datos::vistaMaestrosModel("maestros");
+		$respuesta = Datos::vistas("maestros");
 
 		foreach($respuesta as $row => $item){
 			$item["nivel"]=$item["nivel"]==1?"SuperAdmin":"Maestro";
@@ -1626,14 +1630,15 @@ class MvcController{
 	#Genera la tabla de los reportes de alumnos
 	public function vistaReporteAlumnosController(){
 
-		$respuesta = Datos::vistaAlumnoModel("alumnos");
+		$respuesta = Datos::vistas("alumnos");
 
 		foreach($respuesta as $row => $item){
+			$respuesta2 = Datos::editar($item["id_tutor"],"maestros");
 		echo'<tr>
 				<td>'.$item["matricula"].'</td>
 				<td>'.$item["nombre"].'</td>
 				<td>'.$item["carrera"].'</td>
-				<td>'.$item["tutor"].'</td>
+				<td>'.$respuesta2["nombre"].'</td>
 			</tr>';
 		}
 

@@ -2,10 +2,10 @@
 
 session_start();
 
-if(!$_SESSION["validar"] || !isset($_COOKIE['nivel']) || $_COOKIE['nivel']!="1"){
+/*if(!$_SESSION["validar"] || !isset($_COOKIE['nivel']) || $_COOKIE['nivel']!="1"){
 	header("location:index.php?action=ingresar");
 	exit();
-}
+}*/
 
 ?>
 

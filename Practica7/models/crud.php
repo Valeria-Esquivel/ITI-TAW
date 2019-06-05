@@ -427,7 +427,8 @@ class Datos extends Conexion{
 	#Obtiene los datos de todos los maestros
 	public function vistaMaestrosModel($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT m.num_empleado as num_empleado, m.nombre as nombre, m.email as email, c.nombre as nombre_carrera, m.nivel as nivel FROM $tabla as m inner join carrera as c on m.id_carrera=c.id");	
+		$stmt = Conexion::conectar()->prepare("SELECT m.no.empleado as `no.empleado`, m.nombre as nombre, m.email as email, c.nombre as nombre_carrera, m.nivel as nivel 
+		FROM $tabla as m inner join carrera as c on m.id_carrera=c.id");	
 		$stmt->execute();
  
 		return $stmt->fetchAll();
@@ -497,7 +498,7 @@ class Datos extends Conexion{
 	public function actualizarMaestroModel($datosModel, $tabla){
 
 		var_dump($datosModel);
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, email = :email, password = :password, id_carrera = :id_carrera WHERE num_empleado = :num_empleado");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, email = :email, password = :password, id_carrera = :id_carrera WHERE `no.empleado` = :num_empleado");
 
 		$stmt->bindParam(":num_empleado", $datosModel["num_empleado"], PDO::PARAM_STR);
 		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
