@@ -1268,7 +1268,7 @@ class MvcController{
 	#Genera la interfaz que muestra en una tabla todos los registros almacenados
 	public function vistaTutoriasController(){
 		if($_COOKIE['nivel']==1)
-			$respuesta = Datos::vistaTutoriasModel("sesion_tutoria");
+			$respuesta = Datos::vistas("sesion_tutoria");
 		else
 			$respuesta = Datos::vistaTutoriasNivelModel("sesion_tutoria",$_SESSION["num_empleado"]);		
 		foreach($respuesta as $row => $item){
