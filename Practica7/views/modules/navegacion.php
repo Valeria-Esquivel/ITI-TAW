@@ -21,7 +21,7 @@
 		<li class="nav-item"><a class="nav-link" href="index.php?action=grupos">Grupos</a></li>
 		<li class="nav-item"><a class="nav-link" href="index.php?action=inicio">Salir</a></li>
 		';}
-		else 
+		else if($r==1)
 		{
 			$vistaNav = new MvcController();
 			$vistaNav -> vistaNavegacionController();
